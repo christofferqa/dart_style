@@ -15,11 +15,17 @@ dev_dependencies:
   browser: '>=0.10.0 <0.11.0'
   scheduled_test: '>=0.12.0 <0.13.0'
   test: '>=0.12.0 <0.13.0'
+  dynamic_type_inference:
+    path: ../../../dynamic_type_inference
 executables:
   dartfmt: format
   dartformat: format # Allow the old name for compatibility.
 # Tell the bots not to bother building the tests since they don't run in a
 # browser anyway.
-transformers:
+transformers::
+- dynamic_type_inference:
+    package: "dart_style"
+    staticEntry: "bin/format.dart"
 - $dart2js:
-    $exclude: 'test/**'
+    commandLineOptions: [--output-type=dart]
+    $exclude: ["bin", "example", "lib", "test", "web"]
