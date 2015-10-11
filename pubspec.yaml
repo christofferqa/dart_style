@@ -24,6 +24,7 @@ transformers:
 - dynamic_type_inference:
     package: "dart_style_clone"
     staticEntry: "bin/format.dart"
+    entries: ["test/command_line_test.dart", "test/formatter_test.dart", "test/io_test.dart", "test/source_code_test.dart"]
 - $dart2js:
     commandLineOptions: [--output-type=dart]
     $exclude: ["bin", "example", "lib", "test", "web"]
