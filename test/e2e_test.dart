@@ -46,11 +46,11 @@ testFile(name) {
 
 void main() {
   group("group", () {
-    testFile("e2e-files/file1.dart");
-    testFile("e2e-files/file2.dart");
-    testFile("e2e-files/file3.dart");
-    testFile("e2e-files/file4.dart");
-    testFile("e2e-files/file5.dart");
+    testFile("e2e-files/file1.unit");
+    testFile("e2e-files/file2.unit");
+    testFile("e2e-files/file3.unit");
+    testFile("e2e-files/file4.unit");
+    testFile("e2e-files/file5.unit");
   });
 }
   
