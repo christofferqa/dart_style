@@ -7,50 +7,85 @@ library dart_style_test.source_code_test;
 import '../bin/format.dart' as Format;
 import 'dart:isolate';
 import 'package:scheduled_test/scheduled_test.dart';
+import 'package:test/test.dart' as tester;
 import 'dart:async';
 import 'dart:io';
 import 'package:path/path.dart' as p;
 
-callMain(args) {
-  Format.main(args);
+import 'package:dynamic_type_inference/src/dynamic_analysis/runtime/runtime.dart';
+import 'package:dynamic_type_inference/src/dynamic_analysis/runtime/value_tracker.dart';
+import 'package:dynamic_type_inference/src/dynamic_analysis/runtime/communicators/vm_type_inference_communicator.dart';
+
+class FakeConsole {
+  void log(m) { print(m); }
+  void error(m) { print(m); }
+  void groupCollapsed(m) { print(m); }
+  void groupEnd() {}
 }
 
-Future runTest(List<dynamic> args) {
-  Completer c = new Completer();
-  var exit = new ReceivePort();
-  Isolate.spawn(callMain, args, onExit: exit.sendPort);
-  exit.listen((data) {
-    c.complete();
+callMain(args) {
+  var replyTo = args.removeLast();
+  var id = args.removeLast();
+
+  VmTypeInferenceCommunicator communicator = new VmTypeInferenceCommunicator("e2e_test-" + id);
+  RuntimeConstraints.initialize("dart_style_clone", communicator, new FakeConsole(), "Mode.VM_TEST_TYPE_INFERENCE");
+  EventLoop.listeners.add((x, y) {
+    replyTo.send("OK");
   });
+
+  EventLoop.callMainFunction((List<String> args) {
+    tester.test("test", () {
+      Format.main(args);
+    });
+  }, args, 'dart_style_clone');
+}
+
+Future runTest(List<dynamic> args, id) {
+  RuntimeConstraints.listeners.clear();
+  EventLoop.listeners.clear();
+
+  Completer c = new Completer();
+  var rp = new ReceivePort();
+  
+  args.add(id);
+  args.add(rp.sendPort);
+
+  Isolate.spawn(callMain, args);
+
+  rp.listen((data) {
+    switch (data) {
+      case "OK": c.complete();
+    }
+  });
+
   return c.future;
 }
 
-testFile(name) {
+testFile(name, id) {
   test(name, () {
     schedule(() {
       var inputCode = new File(name).readAsStringSync();
-
-      var args = ["--line-length", "80", "-w", "input.dart"];
-      
+      var args = [
+        "--line-length",
+        "80",
+        "-w",
+        "input.dart"
+      ];
       var file = new File("input.dart");
-      
       file.writeAsStringSync(inputCode);
-
       schedule(() {
-        return runTest(args);  
+        return runTest(args, id);
       });
     });
-  });  
+  });
 }
-
 
 void main() {
   group("group", () {
-    testFile("e2e-files/file1.unit");
-    testFile("e2e-files/file2.unit");
-    testFile("e2e-files/file3.unit");
-    testFile("e2e-files/file4.unit");
-    testFile("e2e-files/file5.unit");
+    testFile("e2e-files/file1.unit", "file1");
+    testFile("e2e-files/file2.unit", "file2");
+    testFile("e2e-files/file3.unit", "file3");
+    testFile("e2e-files/file4.unit", "file4");
+    testFile("e2e-files/file5.unit", "file5");
   });
 }
-  
