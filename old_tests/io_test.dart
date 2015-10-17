@@ -7,12 +7,12 @@ library dart_style.test.io;
 import 'dart:async';
 import 'dart:io';
 
-import 'package:dart_style/src/io.dart';
+import 'package:dart_style_clone/src/io.dart';
 import 'package:path/path.dart' as p;
 import 'package:scheduled_test/descriptor.dart' as d;
 import 'package:scheduled_test/scheduled_test.dart';
 
-import 'package:dart_style/src/formatter_options.dart';
+import 'package:dart_style_clone/src/formatter_options.dart';
 
 import 'utils.dart';
 

@@ -81,6 +81,15 @@ testFile(name, id) {
 }
 
 void main() {
+  stdin
+  .transform(UTF8.decoder)
+  .transform(new LineSplitter())
+  .listen((String line) {
+    if (line == "quit") {
+      exit(0);
+    }
+  });
+  
   group("group", () {
     testFile("e2e-files/file1.unit", "file1");
     testFile("e2e-files/file2.unit", "file2");

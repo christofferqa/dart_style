@@ -7,11 +7,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:dart_style/src/dart_formatter.dart';
-import 'package:dart_style/src/formatter_exception.dart';
-import 'package:dart_style/src/formatter_options.dart';
-import 'package:dart_style/src/io.dart';
-import 'package:dart_style/src/source_code.dart';
+import 'package:dart_style_clone/src/dart_formatter.dart';
+import 'package:dart_style_clone/src/formatter_exception.dart';
+import 'package:dart_style_clone/src/formatter_options.dart';
+import 'package:dart_style_clone/src/io.dart';
+import 'package:dart_style_clone/src/source_code.dart';
 
 void main(List<String> args) {
   var parser = new ArgParser(allowTrailingOptions: true);

@@ -11,7 +11,7 @@ import 'dart:mirrors';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
-import 'package:dart_style/dart_style.dart';
+import 'package:dart_style_clone/dart_style.dart';
 
 void main() {
   testDirectory("comments");

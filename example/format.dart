@@ -9,8 +9,8 @@ import 'dart:mirrors';
 
 import 'package:path/path.dart' as p;
 
-import 'package:dart_style/dart_style.dart';
-import 'package:dart_style/src/debug.dart' as debug;
+import 'package:dart_style_clone/dart_style.dart';
+import 'package:dart_style_clone/src/debug.dart' as debug;
 
 void main(List<String> args) {
   // Enable debugging so you can see some of the formatter's internal state.

@@ -6,7 +6,7 @@ library dart_style.test.source_code_test;
 
 import 'package:test/test.dart';
 
-import 'package:dart_style/dart_style.dart';
+import 'package:dart_style_clone/dart_style.dart';
 
 void main() {
   var selection =

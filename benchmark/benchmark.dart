@@ -8,7 +8,7 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
-import 'package:dart_style/dart_style.dart';
+import 'package:dart_style_clone/dart_style.dart';
 
 const NUM_TRIALS = 100;
 const FORMATS_PER_TRIAL = 30;
