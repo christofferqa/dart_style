@@ -4,12 +4,14 @@
 
 library dart_style_test.source_code_test;
 
-import '../bin/format.dart' as Format;
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 import 'dart:isolate';
+
+import '../bin/format.dart' as Format;
 import 'package:scheduled_test/scheduled_test.dart';
 import 'package:test/test.dart' as tester;
-import 'dart:async';
-import 'dart:io';
 import 'package:path/path.dart' as p;
 
 import 'package:dynamic_type_inference/src/dynamic_analysis/runtime/runtime.dart';
