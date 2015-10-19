@@ -79,7 +79,7 @@ testFile(name, id) {
         return runTest(args, id);
       });
     });
-  });
+  }, timeout: const Timeout(const Duration(seconds: 300)));
 }
 
 void main() {
