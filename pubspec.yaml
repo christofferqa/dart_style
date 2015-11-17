@@ -10,21 +10,13 @@ dependencies:
   args: '>=0.12.1 <0.14.0'
   path: '>=1.0.0 <2.0.0'
   source_span: '>=1.1.1 <2.0.0'
+  runtime:
+    path: ../../../vm_runtime
 dev_dependencies:
   async: '>=1.0.0 <=1.2.0' # Temporary to avoid 1.3.0.
   browser: '>=0.10.0 <0.11.0'
   scheduled_test: '>=0.12.0 <0.13.0'
   test: '>=0.12.0 <0.13.0'
-  dynamic_type_inference:
-    path: ../../../dynamic_type_inference
 executables:
   dartfmt: format
   dartformat: format # Allow the old name for compatibility.
-transformers:
-- dynamic_type_inference:
-    package: "dart_style_clone"
-    staticEntry: "bin/format.dart"
-    entries: ["test/e2e_test.dart"]
-- $dart2js:
-    commandLineOptions: [--output-type=dart]
-    $exclude: ["bin", "example", "lib", "test", "web"]
