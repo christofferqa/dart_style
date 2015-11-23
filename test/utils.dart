@@ -11,6 +11,7 @@ import 'package:path/path.dart' as p;
 import 'package:scheduled_test/descriptor.dart' as d;
 import 'package:scheduled_test/scheduled_process.dart';
 import 'package:scheduled_test/scheduled_test.dart';
+import 'package:dart_style_clone/bin/format.dart' as formatter;
 
 const unformattedSource = 'void  main()  =>  print("hello") ;';
 const formattedSource = 'void main() => print("hello");\n';
@@ -35,7 +36,9 @@ ScheduledProcess runFormatter([List<String> args]) {
     args.insert(0, "--package-root=${Platform.packageRoot}");
   }
 
-  return new ScheduledProcess.start(Platform.executable, args);
+  //return new ScheduledProcess.start(Platform.executable, args);
+  formatter.main(args);
+  throw "Unsupported";
 }
 
 /// Runs the command line formatter, passing it the test directory followed by

@@ -15,7 +15,7 @@ import 'package:dart_style_clone/dart_style.dart';
 
 void main() {
   testDirectory("comments");
-  testDirectory("regression");
+  //testDirectory("regression"); // too much for the instrumentation
   testDirectory("selections");
   testDirectory("splitting");
   testDirectory("whitespace");
